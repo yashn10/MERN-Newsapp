@@ -10,14 +10,15 @@ function App() {
 
   const [category, setCategory] = useState('general')
   const [country, setCountry] = useState('us')
+  const [language, setLanguage] = useState('en')
   const [Loggedin, setLoggedin] = useState(false);
 
   return (
 
     <Router>
-      <Navbar setCategory={setCategory} setCountry={setCountry} Loggedin={Loggedin} />
+      <Navbar setCategory={setCategory} setCountry={setCountry} setLanguage={setLanguage} Loggedin={Loggedin} />
       <Routes>
-        <Route path="/" element={<Home category={category} country={country} />} />
+        <Route path="/" element={<Home category={category} country={country} language={language} />} />
         <Route path="/login" element={<Login Logged={setLoggedin} />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>

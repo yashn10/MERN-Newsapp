@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 
-const Navbar = ({ setCategory, setCountry, Loggedin }) => {
+const Navbar = ({ setCategory, setCountry, setLanguage, Loggedin }) => {
 
     const [country, setCountryState] = useState('us');
+    const [language, setLangState] = useState('en');
     const [loggedin, setLoggedin] = useState(false);
 
     const category = (data) => {
@@ -14,6 +15,12 @@ const Navbar = ({ setCategory, setCountry, Loggedin }) => {
         const selectedCountry = e.target.value;
         setCountryState(selectedCountry);
         setCountry(selectedCountry);
+    }
+
+    const handleLangChange = (e) => {
+        const selectedlanguage = e.target.value;
+        setLangState(selectedlanguage);
+        setLanguage(selectedlanguage);
     }
 
     const logout = () => {
@@ -42,6 +49,7 @@ const Navbar = ({ setCategory, setCountry, Loggedin }) => {
                 <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
                     <Link to={"/"} className="mr-5 hover:text-white cursor-pointer" onClick={() => { category('general') }}>Home</Link>
                     <a className="mr-5 hover:text-white cursor-pointer" onClick={() => { category('business') }}>Business</a>
+                    <a className="mr-5 hover:text-white cursor-pointer" onClick={() => { category('technology') }}>Technology</a>
                     <a className="mr-5 hover:text-white cursor-pointer" onClick={() => { category('entertainment') }}>Entertainment</a>
                     <a className="mr-5 hover:text-white cursor-pointer" onClick={() => { category('sports') }}>Sports</a>
                     <a className="mr-5 hover:text-white cursor-pointer" onClick={() => { category('health') }}>Health</a>
@@ -60,6 +68,22 @@ const Navbar = ({ setCategory, setCountry, Loggedin }) => {
                             <option value="de">Germany</option>
                             <option value="fr">France</option>
                             <option value="jp">Japan</option>
+                        </select>
+                    </div>
+                    <div className="ml-5 relative">
+                        <select
+                            className="bg-gray-800 text-white border border-gray-700 p-2 rounded focus:outline-none"
+                            value={language}
+                            onChange={handleLangChange}
+                        >
+                            <option value="hi">Hindi</option>
+                            <option value="en">English</option>
+                            <option value="fr">French</option>
+                            <option value="zh">Chinese</option>
+                            <option value="ar">Arabic</option>
+                            <option value="de">German</option>
+                            <option value="he">Hebrew</option>
+                            <option value="ja">Japanese</option>
                         </select>
                     </div>
                 </nav>
