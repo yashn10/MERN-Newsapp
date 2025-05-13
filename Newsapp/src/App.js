@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-
+import { ThemeProvider } from "./context/themeContext";
 
 function App() {
 
@@ -15,14 +15,18 @@ function App() {
 
   return (
 
-    <Router>
-      <Navbar setCategory={setCategory} setCountry={setCountry} setLanguage={setLanguage} Loggedin={Loggedin} />
-      <Routes>
-        <Route path="/" element={<Home category={category} country={country} language={language} />} />
-        <Route path="/login" element={<Login Logged={setLoggedin} />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <div className="bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
+        <Router>
+          <Navbar setCategory={setCategory} setCountry={setCountry} setLanguage={setLanguage} Loggedin={Loggedin} />
+          <Routes>
+            <Route path="/" element={<Home category={category} country={country} language={language} />} />
+            <Route path="/login" element={<Login Logged={setLoggedin} />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </Router>
+      </div>
+    </ThemeProvider>
 
   );
 }
